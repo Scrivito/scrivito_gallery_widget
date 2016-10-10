@@ -2,6 +2,7 @@
   img {
     max-width: 100%;
     display: block;
+    max-height: 300px;
     margin: 0 auto;
   }
 
@@ -16,6 +17,7 @@
 .scrivito_gallery_widget_image_list {
   list-style: none;
   margin: 0 -5px 0;
+  padding: 0;
   li {
     margin: 10px 5px 0;
     float: left;
