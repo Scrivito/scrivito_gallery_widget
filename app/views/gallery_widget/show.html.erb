@@ -3,14 +3,16 @@
     <% widget.images.each_with_index do |image, index|%>
       <div class="<%= index == 0 ? 'active' : '' %>" id="image-gallery-<%= image.id %>">
         <%= image_tag scrivito_path(image) %>
-        <%= widget.image_description(image) %>
+        <% if widget.show_description? && lookup_context.find_all('image/_image_description').any? %>
+          <%= render partial: 'image/image_description', locals: {image: image} %>
+        <% end %>
       </div>
     <% end %>
   </div>
 
   <ul class="scrivito_gallery_widget_image_list clearfix" data-image-activate-on="<%= widget.activate_method %>">
     <% widget.images.each_with_index do |image, index|%>
-      <li class="<%= index == 0 ? 'active' : '' %>" data-original-image="<%= scrivito_path(image) %>" data-image-gallery-target="#image-gallery-<%= image.id %>">
+      <li class="<%= index == 0 ? 'active' : '' %>" data-image-gallery-target="#image-gallery-<%= image.id %>">
         <%= image_tag scrivito_path(image.blob.transform({ width: 200, height: 100 })) %>
       </li>
     <% end %>
